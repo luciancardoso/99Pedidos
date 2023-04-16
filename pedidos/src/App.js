@@ -13,6 +13,7 @@ const App = () => {
         <Route path="/" element={<Dashboard />} />
         <Route path="/pedidos" element={<Pedidos />} />
         <Route path="/pedidos/novo" element={<PedidoEditar />} />
+        <Route path="/pedidos/editar/:id_pedido" element={<PedidoEditar />} />
       </Routes>
     </BrowserRouter>
   );

@@ -3,35 +3,46 @@ import { Link } from "react-router-dom"
 import Pedido from "../../components/pedido/pedido"
 
 import "./pedidos.css"
+import { useEffect, useState } from "react"
 
 const Pedidos = () => {
 
-    const pedidos = [
-        {
-            "id_pedido": 3,
-            "cliente": "Offina Brasil",
-            "dt_pedido": "2023-03-09T19:45:54.209Z",
-            "status": "A",
-            "status_descricao": "Em Aberto",
-            "vl_total": 800
-        },
-        {
-            "id_pedido": 2,
-            "cliente": "Autoposto Brasil",
-            "dt_pedido": "2023-03-09T19:45:54.209Z",
-            "status": "F",
-            "status_descricao": "Finalizado",
-            "vl_total": 180
-        },
-        {
-            "id_pedido": 1,
-            "cliente": "99 Coders",
-            "dt_pedido": "2023-02-15T00:00:00.000Z",
-            "status": "F",
-            "status_descricao": "Finalizado",
-            "vl_total": 1400
-        }
-    ]
+    const [pedidos, setPedidos] = useState([]);
+    const [status, setStatus] = useState("");
+
+    const ConsultarPedidos = () => {
+        setPedidos(
+        [
+            {
+                "id_pedido": 3,
+                "cliente": "Offina Brasil",
+                "dt_pedido": "2023-03-09T19:45:54.209Z",
+                "status": "A",
+                "status_descricao": "Em Aberto",
+                "vl_total": 800
+            },
+            {
+                "id_pedido": 2,
+                "cliente": "Autoposto Brasil",
+                "dt_pedido": "2023-03-09T19:45:54.209Z",
+                "status": "F",
+                "status_descricao": "Finalizado",
+                "vl_total": 180
+            },
+            {
+                "id_pedido": 1,
+                "cliente": "99 Coders",
+                "dt_pedido": "2023-02-15T00:00:00.000Z",
+                "status": "F",
+                "status_descricao": "Finalizado",
+                "vl_total": 1400
+            }
+        ])
+    }
+
+    useEffect(() => {
+        ConsultarPedidos()
+    }, [])
 
     return(
         <>
@@ -47,13 +58,13 @@ const Pedidos = () => {
 
                     <div>
                         <div className="form-control d-inline me-3">
-                            <select name="status" id="status">
-                                <option value="">Status</option>
+                            <select name="status" id="status" onChange={(e) => setStatus(e.target.value)}>
+                                <option value="">Todos os Status</option>
                                 <option value="A">Aberto</option>
                                 <option value="F">Finalizado</option>
                             </select>
                         </div>
-                        <button className="btn btn-primary">Filtrar</button>
+                        <button className="btn btn-primary" onClick={ConsultarPedidos}>Filtrar</button>
                     </div>
                 </div>
 

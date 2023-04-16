@@ -1,7 +1,19 @@
+import { Link } from "react-router-dom";
 
 const Pedido = (props) => {
 
-    const dt_pedido = new Date(props.dt_pedido)
+    const dt_pedido = new Date(props.dt_pedido.substring(0, 19)); // 2023-03-09T19:45:54.209Z
+
+    const AlterarStatus = (id_ped, st) => {
+        alert(id_ped + ' mudar para o status ' + st)
+        // Fazer um PUT para o servidor
+    }
+
+    const ExcluirPedido = id_ped => {
+        alert('Excluir Pedido ' + id_ped)
+
+        // Fazer o DELETE no servidor
+    }
 
     return(
         <tr>
@@ -16,11 +28,11 @@ const Pedido = (props) => {
                         Opções
                     </button>
                     <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" href="#">Editar Pedido</a></li>
-                        <li><a className="dropdown-item" href="#">Excluir Pedido</a></li>
+                        <li><Link className="dropdown-item" to={"/pedidos/editar/" + props.id_pedido}>Editar Pedido</Link></li>
+                        <li><button className="dropdown-item" onClick={(e) => ExcluirPedido(props.id_pedido)}>Excluir Pedido</button></li>
                         <li><hr className="dropdown-divider" /></li>
-                        <li><a className="dropdown-item" href="#">Finalizar Pedido</a></li>
-                        <li><a className="dropdown-item" href="#">Reabrir Pedido</a></li>
+                        <li><button className="dropdown-item" onClick={(e) => AlterarStatus(props.id_pedido, "F")}>Finalizar Pedido</button></li>
+                        <li><button className="dropdown-item" onClick={(e) => AlterarStatus(props.id_pedido, "A")}>Reabrir Pedido</button></li>
                     </ul>
                 </div>
             </td>

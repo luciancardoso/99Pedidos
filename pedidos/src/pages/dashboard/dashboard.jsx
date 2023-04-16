@@ -1,50 +1,79 @@
+import { useEffect, useState } from "react";
 import Grafico from "../../components/grafico/grafico"
 import Navbar from "../../components/navbar/navbar"
 
 const Dashboard = () => {
 
-    const dados_clientes = [
-        ["Cliente", "Vendas"],
-        ["Microsoft", 5200],
-        ["IBM", 4900],
-        ["Apple", 4200],
-        ["Facebook", 3210],
-        ["Google", 2140]
-    ];
+    const [dados_clientes, setDadosClientes] = useState([]);
+    const [dados_vendas, setDadosVendas] = useState([]);
+    const [dados_produtos, setDadosProdutos] = useState([]);
+    const [dados_cidades, setDadosCidades] = useState([]);
 
-    const dados_vendas = [
-        ["Mês", "Vendas"],
-        ["1", 5200],
-        ["2", 4900],
-        ["3", 7200],
-        ["4", 3210],
-        ["5", 5362],
-        ["6", 6200],
-        ["7", 6852],
-        ["8", 4210],
-        ["9", 5630],
-        ["10", 8452],
-        ["11", 4250],
-        ["12", 6325]
-    ];
 
-    const dados_produtos = [
-        ["Produto", "Vendas"],
-        ["Teclado", 5200],
-        ["Monitor", 4900],
-        ["HD", 4200],
-        ["Fone", 3210],
-        ["Webcam", 2140]
-    ];
+    const GraficoClientes = () => {
+        setDadosClientes([
+            ["Cliente", "Vendas"],
+            ["Microsoft", 5200],
+            ["IBM", 4900],
+            ["Apple", 4200],
+            ["Facebook", 3210],
+            ["Google", 2140]
+        ]);
+    }
 
-    const dados_cidades = [
-        ["Cidade", "Vendas"],
-        ["São Paulo", 5200],
-        ["Rio de Janeiro", 4900],
-        ["Campinas", 4200],
-        ["Curitiba", 3210],
-        ["Bauru", 2140]
-    ];
+    const GraficoVendas = () => {
+        setDadosVendas(
+            [
+                ["Mês", "Vendas"],
+                ["1", 5200],
+                ["2", 4900],
+                ["3", 7200],
+                ["4", 3210],
+                ["5", 5362],
+                ["6", 6200],
+                ["7", 6852],
+                ["8", 4210],
+                ["9", 5630],
+                ["10", 8452],
+                ["11", 4250],
+                ["12", 6325]
+        ]);
+    }
+
+    const GraficoProdutos = () => {
+        setDadosProdutos(
+        [
+            ["Produto", "Vendas"],
+            ["Teclado", 5200],
+            ["Monitor", 4900],
+            ["HD", 4200],
+            ["Fone", 3210],
+            ["Webcam", 2140]
+        ])
+    }
+
+    const GraficoCidades = () => {
+        setDadosCidades(
+        [
+            ["Cidade", "Vendas"],
+            ["São Paulo", 5200],
+            ["Rio de Janeiro", 4900],
+            ["Campinas", 4200],
+            ["Curitiba", 3210],
+            ["Bauru", 2140]
+        ])
+    }
+
+    const MontarGraficos = () => {
+        GraficoClientes()
+        GraficoVendas()
+        GraficoProdutos()
+        GraficoCidades()
+    }
+
+    useEffect(() => {
+        MontarGraficos()
+    }, [])
 
     return(
         <>
@@ -54,7 +83,7 @@ const Dashboard = () => {
                 
                 <div className="ms-4 d-flex justify-content-between">
                     <h2>Dashboard</h2>
-                    <button className="btn btn-primary me-4"><i className="fas fa-plus"></i>Atualizar</button>
+                    <button className="btn btn-primary me-4" onClick={MontarGraficos}>Atualizar</button>
                 </div>
 
                 <div className="row">
