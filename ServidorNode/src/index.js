@@ -7,6 +7,7 @@ import routeCliente from "./Routes/route.cliente.js";
 import routeProduto from "./Routes/route.produto.js";
 import routeCondPagto from "./Routes/route.condpagto.js";
 import routeDashboard from "./Routes/route.dashboard.js";
+import routePedido from "./Routes/route.pedido.js";
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use(routeCliente);
 app.use(routeProduto);
 app.use(routeCondPagto);
 app.use(routeDashboard);
+app.use(routePedido);
 
 app.listen(3001, function(){
     console.log("Servidor rodando na porta : 3001")  
